@@ -78,4 +78,11 @@ Route::group([
         Route::delete('/{vacancy}', 'DestroyController')->name('admin.vacancy.destroy');
     });
 
+    Route::group([
+        'prefix' => 'users',
+        'namespace' => 'User',
+    ], function () {
+        Route::get('/', 'IndexController')->name('admin.user.index');
+    });
+
 });

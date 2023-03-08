@@ -19,3 +19,9 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/ping', function () {
+    return 'pong';
+});
+
+Route::get('/users', 'App\Http\Controllers\UserController');
