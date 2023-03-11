@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('preview_image')->nullable();
             $table->string('git_profile_link')->nullable();
             $table->string('contacts')->nullable();
             $table->string('email')->unique();
