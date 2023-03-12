@@ -17,7 +17,7 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>User login</th>
+                    <th>User name</th>
                     <th>User email</th>
                     <th colspan="3">Action</th>
                   </tr>
@@ -26,8 +26,21 @@
                   @foreach ($users as $user)
                     <tr>
                       <td>{{ $user->id }}</td>
-                      <td>{{ $user->title }}</td>
+                      <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
+                      <td>
+                        <a class="btn btn-default" type="button" href="{{ route('admin.user.show', $user->id) }}"><i class="far fa-eye"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" type="button" href="{{ route('admin.user.edit', $user->id) }}"><i class="fas fa-pen"></i></a>
+                      </td>
+                      <td>
+                        <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>

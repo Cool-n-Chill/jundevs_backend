@@ -84,6 +84,10 @@ Route::group([
         'namespace' => 'User',
     ], function () {
         Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/show/{user}', 'ShowController')->name('admin.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('admin.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
+        Route::delete('/{user}', 'DestroyController')->name('admin.user.destroy');
     });
 
 });

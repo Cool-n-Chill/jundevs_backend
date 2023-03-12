@@ -33,13 +33,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('adminadmin'),
-            'role_id' => 1
+            'role_id' => \App\Models\User::ADMIN_ID
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'role_id' => 4
+            'role_id' => \App\Models\User::UNEMPLOYED_ID
         ]);
     }
 }

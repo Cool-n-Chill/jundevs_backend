@@ -14,6 +14,16 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
+     * User role IDs
+     * 
+     * @var string
+     */
+    const ADMIN_ID = 1;
+    const PROJECT_OWNER_ID = 2;
+    const EMPLOYEE_ID = 3;
+    const UNEMPLOYED_ID = 4;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -22,6 +32,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
+        'git_profile_link',
+        'contacts',
+        'project_id',
         'role_id'
     ];
 
@@ -43,4 +57,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'skill_user', 'user_id', 'skill_id');
+    }
 }
